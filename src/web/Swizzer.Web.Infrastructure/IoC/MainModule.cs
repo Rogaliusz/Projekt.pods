@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Autofac;
 using Microsoft.Extensions.Configuration;
+using Swizzer.Web.Infrastructure.Framework;
+using Swizzer.Web.Infrastructure.Mappers;
 using Swizzer.Web.Infrastructure.Sql;
 
 namespace Swizzer.Web.Infrastructure.IoC
@@ -19,6 +21,8 @@ namespace Swizzer.Web.Infrastructure.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule(new SqlModule(_configuration));
+            builder.RegisterModule(new FrameworkModule(_configuration));
+            builder.RegisterModule(new MapperModule());
 
             base.Load(builder);
         }
